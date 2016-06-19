@@ -2,13 +2,6 @@ $icon-font-path: '../fonts/';
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import "bower_components/mdi/scss/_core.scss";
-@import "bower_components/mdi/scss/_extras.scss";
-@import "bower_components/mdi/scss/_functions.scss";
-@import "bower_components/mdi/scss/_icons.scss";
-@import "bower_components/mdi/scss/_path.scss";
-@import "bower_components/mdi/scss/_variables.scss";
-@import "bower_components/mdi/scss/materialdesignicons.scss";
 // endbower
 
 @import "variables";
@@ -23,12 +16,14 @@ $icon-font-path: '../fonts/';
 
 body{
     padding-top: $navbar-height + $navbar-margin-bottom;
-    background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/square_bg.png);
+    //background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/square_bg.png);
+    background-image: url(../images/backgrounds/square_bg.png);
 }
 
 .navbar-inverse {
+    //background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/skewed_print.png);
     //background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/pw_maze_black.png);
-    background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/skewed_print.png);
+    background-image: url(../images/backgrounds/pw_maze_black.png);
 }
 
 // Mix subcontainers = mix size

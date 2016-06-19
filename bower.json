@@ -18,6 +18,12 @@
         "assets/fonts/bootstrap/*",
         "assets/javascripts/bootstrap.js"
       ]
+    },
+    "mdi": {
+      "main": [
+        "fonts/*",
+        "css/*"
+      ]
     }
   },
   "devDependencies": {

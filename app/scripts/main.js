@@ -138,6 +138,11 @@ var appModule = (function () {
         $container.find('.mix').remove();
         $container.find('.mixitup-fail-message').after(html);
 
+        // Adapt text to the tile
+        //if ($().flowtype) {
+        //    $('.tile .title').flowtype();
+        //}
+
         // Append missing cube faces
         $('.front-face').after('<div class="back-face"></div>'
             + '<div class="top-face"></div>'
@@ -206,6 +211,9 @@ var appModule = (function () {
         // Instantiate MixItUp
         var $container = $('.mix-container');
         $container.mixItUp({
+            load: {
+        		filter: '.tile-filter'
+        	},
             controls: {
                 enable: false // we won't be needing these
             },
@@ -262,6 +270,11 @@ var appModule = (function () {
                 $container.toggleClass('tile-title-hidden', (size < 100));
                 $container.toggleClass('tile-subtitle-hidden', (size < 125));
                 $container.toggleClass('tile-description-hidden', (size < 150));
+
+                // Adapt text to the tile
+                //if ($().flowtype) {
+                //    $('.tile .title').flowtype();
+                //}
 
             }
             $('#settings_styles').html(cssRules.join(''));
