@@ -1,0 +1,44 @@
+
+/* Reversed TINY */
+.navbar-brand {
+    .brand strong,
+    .brand span {
+        margin-right: 1px;
+        display: inline-block;
+        text-align: center;
+        width: 1.5em;
+        height: 1.5em;
+        font-size: 80%;
+    }
+    .brand span {
+        border: solid 1px;
+    }
+    .brand strong {
+        position: relative;
+        font-weight: bold;
+        display: inline-block;
+        //margin-left: 2px;
+        transform: rotate(5deg);
+        transform-origin: 0 100%;
+    }
+}
+.navbar-inverse {
+    .navbar-brand .brand .text-inverse {
+        color: $navbar-inverse-bg;
+        background-color: $navbar-inverse-brand-color;
+    }
+    .navbar-brand:hover .brand .text-inverse,
+    .navbar-brand:focus .brand .text-inverse {
+        background-color: $navbar-inverse-brand-hover-color;
+    }
+}
+.navbar-default {
+    .navbar-brand .brand .text-inverse {
+        color: $navbar-default-bg;
+        background-color: $navbar-default-brand-color;
+    }
+    .navbar-brand:hover .brand .text-inverse,
+    .navbar-brand:focus .brand .text-inverse {
+        color: $navbar-default-brand-hover-color;
+    }
+}

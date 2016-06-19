@@ -1,0 +1,62 @@
+
+@mixin cuboid($width, $height, $depth) {
+
+    width: $width;
+    height: $height;
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    [class$="face"] {
+        position: absolute;
+    }
+
+    .front-face,
+    .back-face {
+        top: 0;
+        width: $width;
+        height: $height;
+    }
+
+    .top-face,
+    .bottom-face {
+        top: 0;
+        width: $width;
+        height: $depth;
+    }
+
+    .left-face,
+    .right-face {
+        top: 0;
+        width: $depth;
+        height: $height;
+    }
+
+    .front-face {
+        transform: translateZ($depth / 2);
+    }
+
+    .back-face {
+        transform: rotateY(180deg) translateZ($depth / 2);
+    }
+
+    .top-face {
+        //top: 0;
+        transform: rotateX(90deg) translateZ($depth / 2);
+    }
+
+    .bottom-face {
+        //bottom: 0;
+        transform: rotateX(-90deg) translateZ($depth / 2);
+    }
+
+    .left-face {
+        //left: 0;
+        transform: rotateY(-90deg) translateZ($depth / 2);
+    }
+
+    .right-face {
+        //right: 0;
+        transform: rotateY(90deg) translateZ($depth / 2);
+    }
+}

@@ -1,0 +1,53 @@
+
+.tile-link {
+
+    .tile {
+
+        color: $btn-primary-color;
+        border-color: $btn-primary-border;
+
+        // Assorted bg (image bg + filter)
+        &:before {
+            //background-size: 64px;
+            //filter: blur(4px) saturate(1);
+            background-color: $btn-primary-bg;
+            background-size: 4px;
+            filter: blur(2px);
+        }
+
+        .content {
+            color: $btn-primary-color;
+
+            // Transparent bg
+            &:before {
+                //background-color: $btn-primary-bg;
+                //opacity: .2 !important;
+            }
+
+            // Bottom left link icon
+            &:after {
+                content: "\F337";
+            }
+
+        }
+
+        .favicon {
+            max-width: 32px;
+            max-height: 32px;
+            filter: saturate(0) brightness(.2) invert(1);
+        }
+
+        &:not(:hover) .favicon {
+
+        }
+
+    }
+
+}
+
+.mix {
+    & > a {
+        text-decoration: none;
+        transition: .5s;
+    }
+}

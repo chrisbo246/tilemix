@@ -1,0 +1,57 @@
+
+.tile-filter {
+
+    .tile {
+
+        .content {
+
+            // Transparent bg
+            &:before {
+                background-color: $btn-default-bg; // $well-bg
+            }
+
+            // Black corner
+            &:after {
+                content: "\F232";
+                //content: "";
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 0 20px 20px;
+                border-color: transparent transparent $text-color transparent;
+            }
+
+        }
+
+    }
+
+}
+
+// Checkbox
+.mix > .checkbox {
+
+    & > label {
+
+        // Checked bg color
+        & > input:checked + .tile {
+
+            opacity: .25;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .25);
+
+            .content {
+                color: $btn-default-color; // $component-active-color
+                //filter: blur(1px);
+            }
+
+            &:after {
+                //background-color: $btn-link-disabled-color; // $component-active-bg
+            }
+
+        }
+
+    }
+
+}

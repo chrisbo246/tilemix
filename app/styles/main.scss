@@ -1,0 +1,95 @@
+$icon-font-path: '../fonts/';
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+@import "variables";
+@import "mixins/animations";
+@import "mixitup";
+@import "tile";
+@import "materialDesignIcons";
+@import "scrollbar";
+@import "logo";
+@import "ad";
+@import "fixes";
+
+body{
+    padding-top: $navbar-height + $navbar-margin-bottom;
+    background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/square_bg.png);
+}
+
+.navbar-inverse {
+    //background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/pw_maze_black.png);
+    background-image: url(http://cdn.backgroundhost.com/backgrounds/subtlepatterns/skewed_print.png);
+}
+
+// Mix subcontainers = mix size
+.mix-container .mix {
+
+    // Adjust inner divs to the mix size
+    & > .checkbox,
+    & > .checkbox > label,
+    & > a,
+    .tile {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    // Hide 3D by default
+    .tile {
+        &.top-face,
+        &.bottom-face,
+        &.left-face,
+        &.right-face,
+        &.back-face {
+            display: none;
+        }
+    }
+
+}
+
+// Hide mix checkboxes and define the next element color when checked
+.mix-checkboxes {
+    .checkbox input {
+        display: none;
+    }
+    .checkbox input:checked + * {
+        color: $link-hover-color;
+    }
+}
+
+.navbar-default {
+    .mix-checkboxes .checkbox input:checked + * {
+        color: $navbar-default-link-active-color;
+        background-color: $navbar-default-link-active-bg;
+    }
+}
+
+.navbar-inverse {
+    .mix-checkboxes .checkbox input:checked + * {
+        color: $navbar-inverse-link-active-color;
+        background-color: $navbar-inverse-link-active-bg;
+    }
+}
+
+.ad_container {
+    text-align: left;
+}
+
+// Ad in tile
+.tile-ad .tile {
+
+    background-color: $well-bg;
+    border: none !important;
+    display: inline-block !important;
+
+    .adsbygoogle {
+        width: 125px !important;
+        height: 125px !important;
+    }
+
+}

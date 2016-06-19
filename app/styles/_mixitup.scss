@@ -1,0 +1,47 @@
+
+.mix-container {
+
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    //text-align: justify;
+
+    .mix,
+    .gap {
+        width: 127px;
+        height: 127px;
+        margin: 0;
+    }
+
+    // Initially hide every mix
+    .mix {
+        display: none;
+    }
+
+    .gap {
+        background-color: $well-bg;
+    }
+
+    // Fail message
+    .mixitup-fail-message {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        pointer-events: none;
+        transition: 1s;
+    }
+
+    &.fail .mixitup-fail-message {
+        opacity: 1;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    // Clear fix
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+    }
+
+}

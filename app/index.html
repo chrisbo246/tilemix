@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js tile-description-hidden" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Quick access to the best developers tools.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TILEMIX - Quick access and remind solution</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <style id="settings_styles"></style>
+    <style id="tile_styles"></style>
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <!--[if lt IE 10]>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+    </div>
+    <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button type="button" class="navbar-toggle collapsed navbar-right glyphicon glyphicon-share-alt hidden" data-toggle="collapse" data-target="#navbar-collapse-2" aria-expanded="false">
+                    <span class="sr-only">Share</span>
+                </button>
+                <a class="navbar-brand" href="./">
+                    <span class="glyphicon glyphicon-th hidden"></span>
+                    <span class="brand"><span>T</span><span>I</span><span>L</span><span>E</span><span>M</span><span>I</span><span>X</span></span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right" id="navbar-collapse-2">
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <form class="navbar-form navbar-right mix-filter-form" data-persist="garlic">
+                    <div class="input-group mix-filter-group mix-search">
+                        <input type="text" class="form-control" placeholder="Search..."/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default mix-reset" aria-label="Clear Filters" type="button">
+                                <i class="mdi mdi-filter-remove" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!--
+                <form class="navbar-form navbar-left mix-filter-form mix-filter-group mix-checkboxes" data-persist="garlic">
+                    <div class="input-group navbar-link">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value=".tile-filter"/>
+                                <span><i class="mdi mdi-filter" aria-hidden="true" title="Filters" data-toggle="tooltip"></i> Filters</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group navbar-link">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value=".tile-link"/>
+                                <span><i class="mdi mdi-link" aria-hidden="true" title="Links" data-toggle="tooltip"></i> Links</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group navbar-link">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value=".tile-note"/>
+                                <span><i class="mdi mdi-note" aria-hidden="true" title="Note" data-toggle="tooltip"></i> Notes</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                -->
+                <!--
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#links_pane" data-toggle="tab"><i class="mdi mdi-link"></i> Links <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#notes_pane" data-toggle="tab"><i class="mdi mdi-note"></i> Notes</a></li>
+                </ul>
+                -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-option-vertical"></span></a>
+                        <a href="#" class="dropdown-toggle visible-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-option-vertical"></span> Options</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://docs.google.com/forms/d/10gBolm41LBkU_0Iq6FKcO4PzPLcSqdPQgpkGlN5VZFg/viewform" target="_blank"><i class="mdi mdi-shape-square-plus" aria-hidden="true"></i> Suggest a new tile<br/><small class="text-muted">Anonymous Google form</small></a></li>
+                            <li><a href="https://docs.google.com/spreadsheets/d/1IzzSvOkYAS_900A94xGtwYzf4vzTXCZD6qm54KSspXk/edit#gid=1412005892" target="_blank"><i class="mdi mdi-table-edit" aria-hidden="true"></i> Edit data<br/><small class="text-muted">Google account required</small></a></li>
+                            <li><a href="#source_modal" data-toggle="modal"><i class="mdi mdi-folder-google-drive" aria-hidden="true"></i> Change data source<br/><small class="text-muted">GDocs public speadsheet</small></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#settings_modal" data-toggle="modal"><i class="mdi mdi-settings" aria-hidden="true"></i> Settings</a></li>
+                            <!--<li><a href="#">Contact</a></li>-->
+                        </ul>
+                    </li>
+                </ul>
+                <div class="navbar-form text-center">
+                    <div class="form-group">
+                        <div class="addthis_sharing_toolbox hidden-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="tab-content">
+        <div id="links_pane" class="tab-pane active" role="tabpanel">
+            <div class="container-fluid">
+                <form class="mix-filter-form mix-filter-group mix-checkboxes" data-persist="garlic">
+                    <div class="grid mix-container text-center">
+                        <div class="alert alert-info mixitup-fail-message" role="alert">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            No items were found matching the selected filters. <a href="#" class="mix-reset pull-right" aria-label="Clear filters" type="button">Clear filters</a>
+                        </div>
+                        <script id="grids-template" type="text/x-handlebars-template">
+                            {{#each grids}}
+                            {{#if_eq active 1}}
+                            <div class="mix {{tags}} {{#if type}}tile-{{cssClass type}}{{/if}}"
+                                data-toggle="popover"
+                                data-title="{{#if title}}<h4 class=title>{{title}}</h4>{{/if}}{{#if subtitle}}<h5 class=subtitle>{{subtitle}}</h5>{{/if}}{{#if description}}<small class=description>{{description}}</small>{{/if}}"
+                                data-content="{{description}}">
+                                {{#if filter}}<div class="checkbox"><label><input type="checkbox" value="{{filter}}"/>{{/if}}
+                                {{#if url}}<a href="{{{url}}}" target="_blank">{{/if}}
+                                <div id="tile_front_face_{{@index}}" class="tile front-face" {{#if color}}data-background-color="{{color}}"{{else}} {{#if url}}data-background-image="http://icons.better-idea.org/icon?size=32&fallback_icon_url=&url={{url}}"{{/if}}{{/if}}>
+                                    <div class="content">
+                                        <div class="center">
+                                            {{#if icon}}<i class="icon {{icon}}" aria-hidden="true"></i>{{else}}{{#if url}}<img class="favicon" src="http://icons.better-idea.org/icon?size=32&fallback_icon_url=&url={{url}}"/>{{/if}}{{/if}}
+                                            {{#if title}}<h4 class="title">{{title}}</h4>{{/if}}
+                                            {{#if subtitle}}<h5 class="subtitle">{{subtitle}}</h5>{{/if}}
+                                            {{#if description}}<small class="description">{{description}}</small>{{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{#if url}}</a>{{/if}}
+                                {{#if filter}}</label></div>{{/if}}
+                            </div>
+                            {{/if_eq}}
+                            {{/each}}
+                        </script>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="notes_pane" class="tab-pane" role="tabpanel">
+            <div class="container-fluid">
+            </div>
+        </div>
+    </div>
+    <div class="ad_container">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle relative-center"
+        style="display:block"
+        data-ad-client="ca-pub-8495719252049968"
+        data-ad-slot="3723415549"
+        data-ad-format="auto"></ins>
+        <script>
+        </script>
+    </div>
+    <div id="source_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md -modal-sm">
+            <form id="source_form" data-persist="garlic" data-destroy="false">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Source</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="spreadsheet">Google spreadsheet ID <sup class="glyphicon glyphicon-question-sign text-info" data-toggle="tooltip" title="Edit your spreadsheet on Google drive. Your URL should look like https://docs.google.com/spreadsheets/d/{ID}/edit#gid=1512005792."></sup></label>
+                            <input id="spreadsheet" class="form-control" type="text" placeholder="1IzzSvOkYAS_900A94xGtwYzf4vzTXCZD6qm54KSspXk" value="1IzzSvOkYAS_900A94xGtwYzf4vzTXCZD6qm54KSspXk" data-default-value="1IzzSvOkYAS_900A94xGtwYzf4vzTXCZD6qm54KSspXk" -required="" />
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="sheet">Sheet <sup class="glyphicon glyphicon-question-sign text-info" data-toggle="tooltip" title="The sheet number starting from one."></sup></label>
+                            <input id="sheet" class="form-control" type="number" min="1" max="50" value="1" data-default-value="1" step="1" required="" />
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <strong>Important!</strong> To make your own database, copy / paste original headers into your own Google spreadsheet, go to <i>File > Publish for the web...</i> and share your spreadsheet publicly.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left reset-form"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> OK</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="settings_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md -modal-sm">
+            <form id="settings_form" data-persist="garlic">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="tile_size">Tile size <sup class="glyphicon glyphicon-question-sign text-info" data-toggle="tooltip" title="Reduce or increase tile size according to your screen size."></sup></label>
+                            <div class="input-group">
+                                <input id="tile_size" class="form-control" type="range" min="50" max="200" value="125" data-default-value="125" step="25" required="" />
+                                <span class="input-group-addon">125</span>
+                            </div>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-default clear-local-storage"><i class="mdi mdi-delete" aria-hidden="true"></i> Clear local storage</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left reset-form"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> OK</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":null,"theme":"light-bottom"};
+    </script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+    <script defer src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5689e8d8b9037927"></script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/mixitup/src/jquery.mixitup.js"></script>
+    <script src="/bower_components/handlebars/handlebars.js"></script>
+    <script src="/bower_components/cookieconsent2/cookieconsent.js"></script>
+    <script src="/bower_components/garlicjs/dist/garlic.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <!-- endbuild -->
+    <!--
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/handlebarsHelpers.js"></script>
+    <script src="scripts/mixitupMultiFilter.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

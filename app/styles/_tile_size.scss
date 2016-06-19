@@ -1,0 +1,25 @@
+
+// Hide some text when icon size is too small
+.tile-icon-hidden .tile .icon {
+    display: none;
+}
+.tile-title-hidden .tile .title {
+    display: none;
+}
+.tile-subtitle-hidden .tile .subtitle {
+    display: none;
+}
+.tile-description-hidden .tile .description {
+    display: none;
+}
+
+// Show hidden text in tooltip
+.tile-title-hidden .tooltip .title {
+    display: block;
+}
+.tile-subtitle-hidden .tooltip .subtitle {
+    display: block;
+}
+.tile-description-hidden .tooltip .description {
+    display: inline;
+}

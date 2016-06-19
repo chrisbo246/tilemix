@@ -1,0 +1,26 @@
+{
+  "name": "tilemix",
+  "private": true,
+  "dependencies": {
+    "jquery": "2.2.4",
+    "bootstrap-sass": "~3.3.5",
+    "modernizr": "~2.8.1",
+    "mixitup": "^2.1.11",
+    "handlebars": "^4.0.5",
+    "cookieconsent2": "^1.0.10",
+    "garlicjs": "^1.2.4"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/*",
+        "assets/javascripts/bootstrap.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
