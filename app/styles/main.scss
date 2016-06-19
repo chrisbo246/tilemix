@@ -2,6 +2,13 @@ $icon-font-path: '../fonts/';
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "bower_components/mdi/scss/_core.scss";
+@import "bower_components/mdi/scss/_extras.scss";
+@import "bower_components/mdi/scss/_functions.scss";
+@import "bower_components/mdi/scss/_icons.scss";
+@import "bower_components/mdi/scss/_path.scss";
+@import "bower_components/mdi/scss/_variables.scss";
+@import "bower_components/mdi/scss/materialdesignicons.scss";
 // endbower
 
 @import "variables";

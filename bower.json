@@ -8,7 +8,8 @@
     "mixitup": "^2.1.11",
     "handlebars": "^4.0.5",
     "cookieconsent2": "^1.0.10",
-    "garlicjs": "^1.2.4"
+    "garlicjs": "^1.2.4",
+    "mdi": "^1.6.50"
   },
   "overrides": {
     "bootstrap-sass": {
