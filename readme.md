@@ -1,17 +1,20 @@
-# TILEMIX <!--[![Build Status](https://secure.travis-ci.org/chrisbo246/tilemix.svg?branch=master)](http://travis-ci.org/chrisbo246/tilemix) [![Coverage Status](https://coveralls.io/repos/chrisbo246/tilemix/badge.png?branch=master)](https://coveralls.io/r/chrisbo246/tilemix?branch=master) -->[![Donate at PayPal](https://img.shields.io/badge/paypal-donate-green.svg?style=flat)](paypal.me/chrisbo1975)
+# TILEMIX [![Donate at PayPal](https://img.shields.io/badge/paypal-donate-green.svg?style=flat)](paypal.me/chrisbo1975)
+
+<!--
+[![Build Status](https://secure.travis-ci.org/chrisbo246/tilemix.svg?branch=master)](http://travis-ci.org/chrisbo246/tilemix) [![Coverage Status](https://coveralls.io/repos/chrisbo246/tilemix/badge.png?branch=master)](https://coveralls.io/r/chrisbo246/tilemix?branch=master)
+-->
 
 [website](http://chrisbo246.github.io/tilemix/)
 
-Filterable tiles builded from a Google spreadsheet to remind everything.
+Filterable tiles builded from a public Google spreadsheet to link and remind about everything.
 
 ![TILEMIX](screenshot.png)
-
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisities
+### Prerequisites
 
 Install [Node](https://nodejs.org/en/download/) on your local machine then download dependencies.
 
