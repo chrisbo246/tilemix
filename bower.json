@@ -2,14 +2,17 @@
   "name": "tilemix",
   "private": true,
   "dependencies": {
-    "jquery": "2.2.4",
-    "bootstrap-sass": "~3.3.5",
+    "jquery": "^3.1.1",
+    "bootstrap-sass": "^3.3.7",
     "modernizr": "~2.8.1",
     "mixitup": "^2.1.11",
     "handlebars": "^4.0.5",
-    "cookieconsent2": "^1.0.10",
     "garlicjs": "^1.2.4",
-    "mdi": "^1.6.50"
+    "mdi": "^1.7.22",
+    "jquery-cache": "^1.0.2",
+    "image-preloader": "^1.1.1",
+    "sheetrock": "^1.1.2",
+    "cookieconsent": "^3.0.2"
   },
   "overrides": {
     "bootstrap-sass": {

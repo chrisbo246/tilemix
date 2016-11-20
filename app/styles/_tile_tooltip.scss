@@ -1,7 +1,8 @@
 
 .tooltip {
 
-    perspective: 2000px;
+    overflow: hidden;
+    //perspective: 2000px;
 
     .title {
         margin-top: 0;

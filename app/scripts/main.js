@@ -46,7 +46,10 @@ var appModule = (function () {
 
         var dfd = new $.Deferred();
 
-        $.getJSON(url)
+        $.getJSON(url, {
+            localCache: true,
+            cacheTTL: 1
+        })
         .done(function(json) {
             $.each(json.feed.entry, function (k, entry) {
                 row = {};
@@ -76,6 +79,7 @@ var appModule = (function () {
     var updateStyle = function () {
 
         var cssRules = [], $tile, tileId, data;
+        var preloads = [];
 
         var $container = $('.mix-container');
         $container.find('.tile.front-face').filter('[id]').each(function () {
@@ -90,30 +94,50 @@ var appModule = (function () {
                     key = key.replace(/([A-Z])/g, '-$1').toLowerCase();
                     if (key === 'background-image') {
                         cssRules.push(tileId + ':before'
-                        + ', ' + tileId + ' + .tile:before'
-                        + ', ' + tileId + ' + .tile + .tile:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile + .tile:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile + .tile + .tile:before'
+                        + ', ' + tileId + ' ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div ~ div:before'
                         + '{' + key + ':url(' + value + ')}');
+                        preloads.push(value);
                     } else if (key === 'background-color') {
-                        cssRules.push(tileId + ' .content:before'
-                        + ', ' + tileId + ' + .tile .content:before'
-                        + ', ' + tileId + ' + .tile + .tile .content:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile .content:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile + .tile .content:before'
-                        + ', ' + tileId + ' + .tile + .tile + .tile + .tile + .tile .content:before'
+                        cssRules.push(tileId + ':before'
+                        + ', ' + tileId + ' ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div ~ div'
                         + '{' + key + ':' + value + '}');
+                    } else if (key === 'favicon') {
+                        cssRules.push(tileId + ' .favicon:before'
+                        + ', ' + tileId + ' ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div:before'
+                        + ', ' + tileId + ' ~ div ~ div ~ div ~ div ~ div:before'
+                        + '{background-image:url(' + value + ')}');
+                        preloads.push(value);
                     } else {
                         cssRules.push(tileId + '{' + key + ':' + value + '}');
                     }
                 }
 
             });
+
         });
 
         // Append new rules to the head
         $('#tile_styles').html(cssRules.join(''));
+
+        // Preload images
+        if (typeof imagePreloader !== 'undefined') {
+            $.unique(preloads);
+            var preloader = new imagePreloader();
+            preloader.preload(preloads).then(function(status){
+                    console.log('Background images preloaded', status);
+                });
+        }
 
     };
 
@@ -125,35 +149,33 @@ var appModule = (function () {
     */
     var prepareGrid = function (json) {
 
-        // Build template
-        var source = $('#grids-template').html();
+        // Build tiles template
+        var source = $('#tiles-template').html();
         var template = Handlebars.compile(source);
         var context = {
-            grids: json
+            tiles: json
         };
         var html = template(context);
-
-        // Append template to the mixitup container
         var $container = $('.mix-container');
         $container.find('.mix').remove();
         $container.find('.mixitup-fail-message').after(html);
 
-        // Adapt text to the tile
-        //if ($().flowtype) {
-        //    $('.tile .title').flowtype();
-        //}
+        // Build filters template
+        var source = $('#filters-template').html();
+        var template = Handlebars.compile(source);
+        var context = {
+            tiles: json
+        };
+        var html = template(context);
+        var $container = $('.mix-active-filters');
+        $container.html(html);
 
         // Append missing cube faces
-        $('.front-face').after('<div class="back-face"></div>'
+        $('.mix .front-face').after('<div class="back-face"></div>'
             + '<div class="top-face"></div>'
             + '<div class="bottom-face"></div>'
             + '<div class="left-face"></div>'
             + '<div class="right-face"></div>');
-        /*$('.front-face').after('<div class="tile back-face"></div>'
-            + '<div class="tile top-face"></div>'
-            + '<div class="tile bottom-face"></div>'
-            + '<div class="tile left-face"></div>'
-            + '<div class="tile right-face"></div>');*/
 
         // Append CSS rules according to the provided data attributs
         updateStyle();
@@ -211,11 +233,16 @@ var appModule = (function () {
         // Instantiate MixItUp
         var $container = $('.mix-container');
         $container.mixItUp({
+            selectors: {
+        		target: '.mix',
+                filter: '.filter',
+                sort: '.sort'
+        	},
             load: {
-        		filter: '.tile-filter'
+        		filter: '.root' //all none '.tile-filter.none'
         	},
             controls: {
-                enable: false // we won't be needing these
+                enable: true // we won't be needing these
             },
             animation: {
                 easing: 'cubic-bezier(0.86, 0, 0.07, 1)',
@@ -226,9 +253,67 @@ var appModule = (function () {
                 onMixLoad: function(state){
                     console.log('MixItUp ready');
                     (adsbygoogle = window.adsbygoogle || []).push({});
+                },
+                onMixEnd: function (state) {
+
+                    console.log('Mixitup end', state.activeFilter, state);
+
+                    var activeFilters = state.activeFilter.split(',');
+
+                    //var filter = state.activeFilter.replace(/([^\.])(\.)/g, '$1, $2').replace(/([^\s,]+)/g, '[data-filter="$1"]');
+                    //var filter = '[data-filter="' + state.activeFilter + '"]';
+                    //console.log('filter', filter);
+
+                    $('.remove-filter').each(function () {
+                        var $btn = $(this);
+                        $btn.toggleClass('hidden', ($.inArray($btn.data('filter'), activeFilters) === -1));
+                    });
+                    //$('.mix-active-filters').html(history.join(' | '));
+                    /*
+                    var attr = 'mix-active-filter';
+                    var array = [];
+                    var $container = $('.mix-active-filters');
+
+                    // Build active filter buttons
+                    if (state.activeFilter !== '.mix') {
+                        state.activeFilter.split(',').forEach(function (filter) {
+                            array.push('<li><button type="button" class="btn btn-default btn-xs filter" data-filter="' + filter + '" data-' + attr + '="' + filter + '"><span class="glyphicon glyphicon-remove"></span> ' + filter.replace(/^\./, '') + '</button></li>');
+                        });
+                    }
+                    $container.html(array.join(''));
+                    */
+
                 }
             }
         });
+
+        // Watch "Remove filter" buttons
+        var attr = 'filter';
+        //var $container = $('.mix-active-filters');
+        $('.remove-filter').on('click', function (e) {
+            var removeFilter = $(this).data('filter');
+            var state = $container.mixItUp('getState');
+            var activeFilters = state.activeFilter.split(',');
+            console.log('removeFilter', removeFilter);
+            console.log('activeFilters', activeFilters);
+            activeFilters = $.grep(activeFilters, function(value) {
+                return value !== removeFilter;
+            });
+            var newFilter = activeFilters.join(',') || $container.mixItUp('getOption', 'load.filter');
+            $container.mixItUp('filter', newFilter);
+            console.log('newFilter', newFilter);
+            //e.preventDefault();
+            /*var filter = $(this).data(attr);
+            var $checkboxes = $('.mix-container').find('input[type="checkbox"][value="' + filter + '"]').first();
+            if ($checkboxes.length === 1) {
+                $checkboxes.attr('checked', false).trigger('change');
+            }*/
+        });
+
+        // Watch the reset button and restaure the default filter
+        //$('mix-reset').on('click', function () {
+        //    $container.mixItUp('filter', $container.mixItUp('getOption', 'load.filter'));
+        //});
 
     };
 
@@ -262,19 +347,25 @@ var appModule = (function () {
 
                 // Add new CSS rules to the head
                 cssRules.push('.mix,.gap{width:' + (size + 2) + 'px !important;height: ' + (size + 2) + 'px !important}');
-                //cssRules.push('.object{transform: scale(' + (size / 125) + ')}');
-                //cssRules.push('.front-face,.back-face,.top-face,.bottom-face,.left-face,.right-face{width:' + (size + 2) + 'px !important;height: ' + (size + 2) + 'px !important}');
+                cssRules.push('.mix{transform: scale(' + (size / 125) + ') translateZ(' + (-300 - size / 2) + 'px)}');
+                cssRules.push('.mix:hover{transform: scale(' + (size / 125) + ') translateZ(' + (-size / 2) + 'px)}');
+                cssRules.push('.mix .content-wrapper{transform: scale(' + (125 / size) + ')}');
+
+                /*
+                var width = size;
+                var height = size;
+                var depth = size;
+                cssRules.push('.front-face,.back-face,.top-face,.bottom-face{width:' + (width + 2) + 'px !important;}');
+                cssRules.push('.left-face,.right-face{width:' + (depth + 2) + 'px !important;}');
+                cssRules.push('.front-face,.back-face,.left-face,.right-face{height: ' + (height + 2) + 'px !important}');
+                cssRules.push('.top-face,.bottom-face{height: ' + (depth + 2) + 'px !important}');
+                */
 
                 // Add some *-hidden class to the grid container
                 var $container = $('html'); // $('.mix-container');
                 $container.toggleClass('tile-title-hidden', (size < 100));
                 $container.toggleClass('tile-subtitle-hidden', (size < 125));
                 $container.toggleClass('tile-description-hidden', (size < 150));
-
-                // Adapt text to the tile
-                //if ($().flowtype) {
-                //    $('.tile .title').flowtype();
-                //}
 
             }
             $('#settings_styles').html(cssRules.join(''));
@@ -303,6 +394,22 @@ var appModule = (function () {
             sessionStorage.clear();
             location.reload();
         });
+
+        // Replace JS alert by a bsic Bootstrap modal
+        /*
+        var proxied = window.alert;
+        window.alert = function () {
+            console.log('Alert', arguments);
+            var modalId = 'alert_modal';
+            var $modal = $('#' + modalId);
+            if (!$modal) {
+                var html = '<div id="' + modalId + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Alert" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="myModalLabel">Modal header</h3></div><div class="modal-body"><p></p></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Close</button></div>';
+                $('body').append(html);
+            }
+            $modal.find('.modal-body').text(arguments[0]);
+            $modal.modal('show');
+        };
+        */
 
     });
 

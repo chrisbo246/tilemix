@@ -40,6 +40,15 @@
 
 .navbar-brand {
     .brand {
+        span {
+            margin-right: 1px;
+            display: inline-block;
+            text-align: center;
+            width: 1.5em;
+            height: 1.5em;
+            font-size: 80%;
+            border: 1px solid;
+        }
         @include transformLogo;
     }
     .brand:hover {

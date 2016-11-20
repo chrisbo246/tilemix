@@ -6,6 +6,7 @@
     position: relative;
 
     transform-style: preserve-3d;
+    transform-origin: 50% 50% ($depth / 2);
 
     [class$="face"] {
         position: absolute;
@@ -33,6 +34,10 @@
     }
 
     .front-face {
+        //transform: translateZ(0);
+    }
+
+    .front-face {
         transform: translateZ($depth / 2);
     }
 
@@ -40,18 +45,11 @@
         transform: rotateY(180deg) translateZ($depth / 2);
     }
 
-    .top-face {
-        //top: 0;
-        transform: rotateX(90deg) translateZ($depth / 2);
-    }
-
     .bottom-face {
-        //bottom: 0;
         transform: rotateX(-90deg) translateZ($depth / 2);
     }
 
     .left-face {
-        //left: 0;
         transform: rotateY(-90deg) translateZ($depth / 2);
     }
 

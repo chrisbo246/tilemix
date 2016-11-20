@@ -6,24 +6,27 @@
 @import "tile_tooltip";
 @import "tile_3d";
 
-.tile {
+.tile,
+.tile ~ div,
+.tile ~ div ~ div,
+.tile ~ div ~ div ~ div,
+.tile ~ div ~ div ~ div ~ div,
+.tile ~ div ~ div ~ div ~ div ~ div {
 
-    position: relative;
     overflow: hidden;
-    //border: solid 1px;
     box-shadow: 1px 3px 2px rgba(0, 0, 0, .25);
-    border-radius: $btn-border-radius-base;
-    cursor: pointer;
-    cursor: hand;
+    //border-radius: $btn-border-radius-base;
+    //border: solid 1px;
 
     // Image bg \w effect
     &:before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
+        opacity: .5;
     }
 
     // Info sign
@@ -37,13 +40,16 @@
         //content: "\F2FC";
     }
 
-    .content {
+    .content-wrapper {
+
         width: 100%;
         height: 100%;
-        display: table;
-        text-align: center;
+        overflow: hidden;
+        padding: .5em;
+        //margin-left: -100%;
+        //margin-right: -100%;
 
-        // Transparent bg color
+        // Transparent overlay color
         &:before {
             content: "";
             position: absolute;
@@ -51,34 +57,35 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: .8;
+            opacity: .2;
         }
 
         // Corner bottom right (tile type icon)
-        &:after {
+        /*&:after {
             font-family: "Material Design Icons";
             position: absolute;
             width: 20px;
             height: 20px;
             bottom: 0;
             right: 0;
-        }
+        }*/
 
     }
 
-    .center {
+    .content {
+        position: relative;
+        display: table;
+        //display: block;
         width: 100%;
         height: 100%;
-        display: table-cell;
-        //display: block;
-        vertical-align: middle;
-        text-align: center;
+    }
+
+    .center {
         position: relative;
-        padding: .5em;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
         -webkit-font-smoothing: subpixel-antialiased;
-        //-webkit-font-smoothing: antialiased;
-        //font-smoothing: antialiased;
-        //-webkit-font-smoothing: subpixel-antialiased;
     }
 
     .icon {
@@ -87,12 +94,16 @@
     }
 
     .favicon {
-        max-width: 32px;
-        max-height: 32px;
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .title {
-        //white-space: nowrap;
+        word-break: break-all;
         display: block;
         width: 100%;
         margin-top: .2em;

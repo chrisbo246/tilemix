@@ -9,21 +9,54 @@
 
 // Object
 .mix {
-    @include cuboid($tile-width, $tile-height, $tile-width);
-    //transform: rotateX(10deg) rotateY(-15deg) translateZ(-$tile-width / 2);
-    transform: translateZ(-300px);
+    @include cuboid($tile-width, $tile-height, $tile-depth);
+    //transform: translateZ(-300px) rotateX(10deg) rotateY(10deg) rotateZ(0deg);
+    transform: translateZ(-300px - $tile-depth / 2);
     transition: transform .3s;
     -webkit-font-smoothing: subpixel-antialiased;
+
+    // Faces
+    [class$="face"] {
+        display: block !important;
+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
 }
 
 .mix:hover {
-    //transform: rotateX(10deg) rotateY(-15deg) translateZ(0);
-    transform: none;
+    transform: translateZ(- $tile-depth / 2);
     z-index: 1;
 }
 
-// Faces
-[class$="face"] {
-    display: block !important;
-    //box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+/*
+.top-face {
+    background-color: rgba(255, 0, 0, .25);
 }
+.bottom-face {
+    background-color: rgba(255, 125, 0, .25);
+}
+.left-face {
+    background-color: rgba(0, 0, 255, .25);
+}
+.right-face {
+    background-color: rgba(125, 0, 255, .25);
+}
+.back-face {
+    background-color: rgba(0, 255, 0, .25);
+}
+*/
+
+/*
+#room {
+    @include cuboid(100%, 100%, 5000px);
+    transform: translateZ(-2500px);
+    .front-face {
+        background-color: rgba(255,0,0,.25);
+        display: none;
+    }
+    [class$="face"] {
+        //display: block !important;
+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+}
+*/

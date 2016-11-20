@@ -3,17 +3,25 @@
 
     .tile {
 
-        .content {
+        cursor: pointer;
+        cursor: hand;
 
-            // Transparent bg
+        &:before {
+            background-color: $btn-default-bg; // $well-bg
+        }
+
+        .content-wrapper {
+
+            // Transparent overlay color
             &:before {
-                background-color: $btn-default-bg; // $well-bg
+
             }
 
             // Black corner
             &:after {
-                content: "\F232";
-                //content: "";
+                //font-family: "Material Design Icons";
+                //content: "\F232";
+                content: "";
                 position: absolute;
                 bottom: 0;
                 right: 0;
@@ -23,6 +31,10 @@
                 border-width: 0 0 20px 20px;
                 border-color: transparent transparent $text-color transparent;
             }
+
+        }
+
+        .content {
 
         }
 
@@ -39,13 +51,13 @@
         & > input:checked + .tile {
 
             //opacity: .25;
-            color: $btn-primary-color;
-            border-color: $btn-primary-border;
+        //    color: $btn-primary-color;
+        //    border-color: $btn-primary-border;
             box-shadow: 0px 1px 1px rgba(0, 0, 0, .25);
 
             .content:before {
                 //color: $btn-default-color; // $component-active-color
-                background-color: $btn-primary-bg;
+        //        background-color: $btn-primary-bg;
                 //filter: blur(1px);
             }
 
@@ -57,4 +69,11 @@
 
     }
 
+}
+
+.mix {
+    .checkbox > label > input:checked & {
+       //display: inline-block;
+       border: solid 5px #f00 !important;
+    }
 }

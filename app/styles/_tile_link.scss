@@ -1,7 +1,12 @@
 
 .tile-link {
 
-    .tile {
+    .tile,
+    .tile ~ div,
+    .tile ~ div ~ div,
+    .tile ~ div ~ div ~ div,
+    .tile ~ div ~ div ~ div ~ div,
+    .tile ~ div ~ div ~ div ~ div ~ div {
 
         color: $btn-primary-color;
         border-color: $btn-primary-border;
@@ -15,10 +20,9 @@
             filter: blur(2px);
         }
 
-        .content {
-            color: $btn-primary-color;
+        .content-wrapper {
 
-            // Transparent bg
+            // Transparent overlay color
             &:before {
                 //background-color: $btn-primary-bg;
                 //opacity: .2 !important;
@@ -26,15 +30,29 @@
 
             // Bottom left link icon
             &:after {
+                font-family: "Material Design Icons";
                 content: "\F337";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                bottom: 0;
+                right: 0;
             }
 
         }
 
+        .content {
+            color: $btn-primary-color;
+        }
+
         .favicon {
-            max-width: 32px;
-            max-height: 32px;
+            //display: none;
             filter: saturate(0) brightness(.2) invert(1);
+        }
+
+        // Show favicon only if available
+        .favicon &[data-favicon] {
+            display: inline-block;
         }
 
         &:not(:hover) .favicon {

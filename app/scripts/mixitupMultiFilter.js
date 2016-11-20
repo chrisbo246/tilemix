@@ -53,14 +53,19 @@ var mixitupMultiFilter = {
         self.$reset.on('click', function (e) {
             e.preventDefault();
             console.log(self.$filterUi);
-            //self.$filterUi[0].reset();
+            self.$filterUi[0].reset();
 
             self.$filterUi.each(function (i, form) {
                 form.reset();
             });
             self.$filterUi.find('input[type="text"]').val('');
             self.parseFilters();
+
+            // Restore the default filter
+            self.$container.mixItUp('filter', self.$container.mixItUp('getOption', 'load.filter'));
+
         });
+
     },
 
     // The parseFilters method checks which filters are active in each group:
@@ -144,7 +149,9 @@ var mixitupMultiFilter = {
         self.outputString = self.outputArray.join();
 
         // If the output string is empty, show all rather than none:
-        !self.outputString.length && (self.outputString = 'all');
+        var defaultFilter = self.$container.mixItUp('getOption', 'load.filter');
+        //!self.outputString.length && (self.outputString = 'all');
+        !self.outputString.length && (self.outputString = defaultFilter);
 
         console.log('Selected filters', self.outputString);
 
