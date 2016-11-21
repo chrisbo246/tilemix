@@ -1,8 +1,10 @@
-# TILEMIX [![Donate at PayPal](https://img.shields.io/badge/paypal-donate-green.svg?style=flat)](paypal.me/chrisbo1975)
+# TILEMIX
+
+<!--
+[![Donate at PayPal](https://img.shields.io/badge/paypal-donate-green.svg?style=flat)](paypal.me/)
 
 [![Build Status](https://secure.travis-ci.org/chrisbo246/tilemix.svg?branch=master)](http://travis-ci.org/chrisbo246/tilemix)
 
-<!--
 [![Coverage Status](https://coveralls.io/repos/chrisbo246/tilemix/badge.png?branch=master)](https://coveralls.io/r/chrisbo246/tilemix?branch=master)
 -->
 
