@@ -3,7 +3,7 @@
 
 // Camera
 .mix-container {
-    perspective: 5000px;
+    perspective: 2000px;
     backface-visibility: hidden;
 }
 
@@ -11,7 +11,7 @@
 .mix {
     @include cuboid($tile-width, $tile-height, $tile-depth);
     //transform: translateZ(-300px) rotateX(10deg) rotateY(10deg) rotateZ(0deg);
-    transform: translateZ(-300px - $tile-depth / 2);
+    transform: translateZ(-$tile-depth * 2 - $tile-depth / 2);
     transition: transform .3s;
     -webkit-font-smoothing: subpixel-antialiased;
 

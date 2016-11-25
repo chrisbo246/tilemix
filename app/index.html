@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TILEMIX - Quick access and remind solution</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/ico" href="./favicon.ico">
 
     <!--
     <style>
@@ -143,7 +144,7 @@
                                 data-content="{{description}}">
                                 {{#if filter}}<div class="checkbox"><label><input type="checkbox" class="filter" data-filter="{{filter}}" value="{{filter}}"/>{{/if}}
                                 {{#if url}}<a href="{{{url}}}" target="_blank">{{/if}}
-                                <div id="tile_front_face_{{@index}}" class="tile front-face" {{#if color}}data-background-color="{{color}}"{{else}} {{#if url}}data-background-image="http://www.google.com/s2/favicons?domain_url={{url}}"{{/if}}{{/if}} {{#if favicon}}data-favicon="{{favicon}}"{{/if}}>
+                                <div id="tile_front_face_{{@index}}" class="tile front-face" {{#if color}}data-background-color="{{color}}"{{else}} {{#if url}}data-background-image="https://www.google.com/s2/favicons?domain_url={{url}}"{{/if}}{{/if}} {{#if favicon}}data-favicon="{{favicon}}"{{/if}}>
                                     <div class="content-wrapper">
                                         <div class="content">
                                             <div class="center">
